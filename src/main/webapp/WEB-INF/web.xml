@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+    <display-name>Student Management</display-name>
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+    <servlet>
+        <servlet-name>LoginController</servlet-name>
+        <servlet-class>dan.controllers.LoginController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginController</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>StudentController</servlet-name>
+        <servlet-class>dan.controllers.StudentController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StudentController</servlet-name>
+        <url-pattern>/student</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>CourseController</servlet-name>
+        <servlet-class>dan.controllers.CourseController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CourseController</servlet-name>
+        <url-pattern>/course</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>StudentCourseController</servlet-name>
+        <servlet-class>dan.controllers.StudentCourseController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StudentCourseController</servlet-name>
+        <url-pattern>/score</url-pattern>
+    </servlet-mapping>
+</web-app>
