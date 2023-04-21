@@ -19,9 +19,12 @@ public class CourseDao implements Dao<Course> {
                 PreparedStatement statement = connection.prepareStatement(sql);
                 statement.setString(1, id);
                 ResultSet resultSet = statement.executeQuery();
-                Course course = new Course(resultSet.getString("id"), resultSet.getString("name"), resultSet.getString("lecturer"), resultSet.getInt("year"), resultSet.getString("notes"));
+                if (resultSet.next()) {
+                    Course course = new Course(resultSet.getString("id"), resultSet.getString("name"), resultSet.getString("lecturer"), resultSet.getInt("year"), resultSet.getString("notes"));
+                    connection.close();
+                    return course;
+                }
                 connection.close();
-                return course;
             }
         } catch (Exception ignored) {
         }
@@ -105,5 +108,25 @@ public class CourseDao implements Dao<Course> {
         } catch (Exception ignored) {
         }
         return false;
+    }
+
+    public List<Course> findByName(String name) {
+        try {
+            Connection connection = Jdbc.getConnection();
+            String sql = "SELECT * FROM Course WHERE name LIKE ?";
+            if (connection != null) {
+                PreparedStatement statement = connection.prepareStatement(sql);
+                statement.setString(1, "%" + name + "%");
+                ResultSet resultSet = statement.executeQuery();
+                List<Course> courses = new ArrayList<>();
+                while (resultSet.next()) {
+                    courses.add(new Course(resultSet.getString("id"), resultSet.getString("name"), resultSet.getString("lecturer"), resultSet.getInt("year"), resultSet.getString("notes")));
+                }
+                connection.close();
+                return courses;
+            }
+        } catch (Exception ignored) {
+        }
+        return null;
     }
 }

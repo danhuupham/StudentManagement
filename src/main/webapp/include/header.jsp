@@ -29,7 +29,7 @@
                     <a class="nav-link" href="${pageContext.request.contextPath}/course">Courses</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/score">Score</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/scoreboard">Score</a>
                 </li>
             </ul>
         </div>

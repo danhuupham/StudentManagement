@@ -39,5 +39,7 @@ CREATE TABLE StudentCourse
     studentId VARCHAR(10) NOT NULL,
     courseId  VARCHAR(10) NOT NULL,
     score     float,
-    PRIMARY KEY (studentId, courseId)
+    PRIMARY KEY (studentId, courseId),
+    FOREIGN KEY (studentId) REFERENCES Student (id),
+    FOREIGN KEY (courseId) REFERENCES Course (id)
 );

@@ -24,6 +24,14 @@
         <url-pattern>/student</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>CourseDetailsController</servlet-name>
+        <servlet-class>dan.controllers.CourseDetailsController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CourseDetailsController</servlet-name>
+        <url-pattern>/course/details</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>CourseController</servlet-name>
         <servlet-class>dan.controllers.CourseController</servlet-class>
     </servlet>
@@ -32,11 +40,11 @@
         <url-pattern>/course</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>StudentCourseController</servlet-name>
-        <servlet-class>dan.controllers.StudentCourseController</servlet-class>
+        <servlet-name>ScoreboardController</servlet-name>
+        <servlet-class>dan.controllers.ScoreboardController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>StudentCourseController</servlet-name>
-        <url-pattern>/score</url-pattern>
+        <servlet-name>ScoreboardController</servlet-name>
+        <url-pattern>/scoreboard</url-pattern>
     </servlet-mapping>
 </web-app>

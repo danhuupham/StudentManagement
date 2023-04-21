@@ -1,6 +1,7 @@
 package dan.dao;
 
 import dan.db.Jdbc;
+import dan.models.Student;
 import dan.models.StudentCourse;
 
 import java.sql.Connection;
@@ -24,9 +25,12 @@ public class StudentCourseDao implements Dao<StudentCourse> {
                 statement.setString(1, studentId);
                 statement.setString(2, courseId);
                 ResultSet resultSet = statement.executeQuery();
-                StudentCourse studentCourse = new StudentCourse(resultSet.getString("studentId"), resultSet.getString("courseId"), resultSet.getInt("grade"));
+                if (resultSet.next()) {
+                    StudentCourse studentCourse = new StudentCourse(resultSet.getString("studentId"), resultSet.getString("courseId"), resultSet.getInt("score"));
+                    connection.close();
+                    return studentCourse;
+                }
                 connection.close();
-                return studentCourse;
             }
         } catch (Exception ignored) {
         }
@@ -108,4 +112,46 @@ public class StudentCourseDao implements Dao<StudentCourse> {
         }
         return false;
     }
+
+    public List<Student> getStudentsByCourseId(String courseId) {
+        try {
+            Connection connection = Jdbc.getConnection();
+            String sql = "SELECT * FROM Student WHERE id IN (SELECT studentId FROM StudentCourse WHERE courseId = ?)";
+            if (connection != null) {
+                PreparedStatement statement = connection.prepareStatement(sql);
+                statement.setString(1, courseId);
+                ResultSet resultSet = statement.executeQuery();
+                List<Student> students = new ArrayList<>();
+                while (resultSet.next()) {
+                    students.add(new Student(resultSet.getString("id"), resultSet.getString("name"), resultSet.getInt("grade"), resultSet.getDate("birthday"), resultSet.getString("address"), resultSet.getString("notes")));
+                }
+                connection.close();
+                return students;
+            }
+        } catch (Exception ignored) {
+        }
+        return null;
+    }
+
+    public List<StudentCourse> getStudentCoursesByStudentIdAndYear(String id, int year) {
+        try {
+            Connection connection = Jdbc.getConnection();
+            String sql = "SELECT * FROM StudentCourse WHERE studentId = ? AND courseId IN (SELECT id FROM Course WHERE year = ?)";
+            if (connection != null) {
+                PreparedStatement statement = connection.prepareStatement(sql);
+                statement.setString(1, id);
+                statement.setInt(2, year);
+                ResultSet resultSet = statement.executeQuery();
+                List<StudentCourse> studentCourses = new ArrayList<>();
+                while (resultSet.next()) {
+                    studentCourses.add(new StudentCourse(resultSet.getString("studentId"), resultSet.getString("courseId"), resultSet.getInt("score")));
+                }
+                connection.close();
+                return studentCourses;
+            }
+        } catch (Exception ignored) {
+        }
+        return null;
+    }
+
 }

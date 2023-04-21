@@ -1,7 +1,7 @@
 <%@ include file="../include/header.jsp" %>
 <div class="container-fluid">
-    <h2 class="text-center p-2">Delete a student</h2>
-    <form class="row g-3" action="${pageContext.request.contextPath}/student" method="post">
+    <h2 class="text-center p-2">Delete a course</h2>
+    <form class="row g-3" action="${pageContext.request.contextPath}/course" method="post">
         <input type="hidden" name="purpose" value="delete">
         <div class="col-6">
             <label for="id" class="form-label">ID</label>

@@ -43,7 +43,7 @@
             <td><%= course.getNotes() %>
             </td>
             <td>
-                <a href="${pageContext.request.contextPath}/course/details.jsp?id=<%= course.getId() %>">Details</a>
+                <a href="${pageContext.request.contextPath}/course/details?id=<%= course.getId() %>">Details</a>
             </td>
         </tr>
         <% } %>
@@ -62,11 +62,15 @@
         </div>
     </form>
     <div class="text-center">
-        <a href="${pageContext.request.contextPath}/student/add.jsp" role="button" class="btn btn-success">Add
+        <a href="${pageContext.request.contextPath}/course/add.jsp" role="button" class="btn btn-success">Add
+            course</a>
+        <a href="${pageContext.request.contextPath}/course/edit.jsp" role="button" class="btn btn-warning">Edit
+            course</a>
+        <a href="${pageContext.request.contextPath}/course/delete.jsp" role="button" class="btn btn-danger">Delete
+            course</a>
+        <a href="${pageContext.request.contextPath}/course/addStudent.jsp" role="button" class="btn btn-success">Add
             student</a>
-        <a href="${pageContext.request.contextPath}/student/edit.jsp" role="button" class="btn btn-warning">Edit
-            student</a>
-        <a href="${pageContext.request.contextPath}/student/delete.jsp" role="button" class="btn btn-danger">Delete
+        <a href="${pageContext.request.contextPath}/course/deleteStudent.jsp" role="button" class="btn btn-danger">Delete
             student</a>
     </div>
     <% String error = (String) request.getAttribute("error"); %>

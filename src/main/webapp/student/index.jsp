@@ -25,6 +25,7 @@
             <th scope="col">Birthday</th>
             <th scope="col">Address</th>
             <th scope="col">Notes</th>
+            <th scope="col">Details</th>
         </tr>
         </thead>
         <% ArrayList<Student> students = (ArrayList<Student>) request.getAttribute("students"); %>
@@ -43,6 +44,9 @@
             <td><%= student.getAddress() %>
             </td>
             <td><%= student.getNotes() %>
+            </td>
+            <td>
+                <a href="${pageContext.request.contextPath}/student/details?id=<%= student.getId() %>">Details</a>
             </td>
         </tr>
         <% } %>
